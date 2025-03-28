@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { LogInWithAnonAadhaar, useAnonAadhaar } from "@anon-aadhaar/react";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
 
+// Add Anon Aadhaar imports
+
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
+  const [anonAadhaar] = useAnonAadhaar(); // Hook to access Anon Aadhaar state
 
   return (
     <>
@@ -20,6 +24,16 @@ const Home: NextPage = () => {
           <div className="flex justify-center items-center space-x-2 flex-col">
             <p className="my-2 font-medium">Connected Address:</p>
             <Address address={connectedAddress} />
+          </div>
+          {/* Add Anon Aadhaar Login and Status */}
+          <div className="flex justify-center items-center space-x-2 flex-col mt-4">
+            <LogInWithAnonAadhaar nullifierSeed={25211374238223109246111161116779371797729} /> {/* Login button */}
+            <p className="my-2 font-medium">
+              Anon Aadhaar Status: <span className="text-blue-500">{anonAadhaar.status}</span>
+            </p>
+            {anonAadhaar.status === "logged-in" && (
+              <p className="text-green-500">Successfully logged in with Anon Aadhaar!</p>
+            )}
           </div>
           <p className="text-center text-lg">
             Get started by editing{" "}
