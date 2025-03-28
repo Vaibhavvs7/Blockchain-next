@@ -60,6 +60,7 @@
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
     "@anon-aadhaar/react": "^2.4.3",
+    "@heroicons/react": "^2.2.0",
     "@rainbow-me/rainbowkit": "^2.2.4",
     "lucide-react": "^0.484.0",
     "wagmi": "^2.14.15"

@@ -5,9 +5,10 @@ import { LogInWithAnonAadhaar, useAnonAadhaar } from "@anon-aadhaar/react";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { VerifyYourself } from "~~/components/VerifyYourself";
 import { Address } from "~~/components/scaffold-eth";
 
-// Add Anon Aadhaar imports
+// Import the VerifyYourself component
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
@@ -25,16 +26,21 @@ const Home: NextPage = () => {
             <p className="my-2 font-medium">Connected Address:</p>
             <Address address={connectedAddress} />
           </div>
-          {/* Add Anon Aadhaar Login and Status */}
+
+          {/* Replace or complement LogInWithAnonAadhaar with VerifyYourself */}
           <div className="flex justify-center items-center space-x-2 flex-col mt-4">
-            <LogInWithAnonAadhaar nullifierSeed={25211374238223109246111161116779371797729} /> {/* Login button */}
+            {/* Optionally keep this for basic login, or remove if VerifyYourself handles it */}
+            <LogInWithAnonAadhaar nullifierSeed={50126223461532011652251881002559915590251145} />
             <p className="my-2 font-medium">
               Anon Aadhaar Status: <span className="text-blue-500">{anonAadhaar.status}</span>
             </p>
             {anonAadhaar.status === "logged-in" && (
               <p className="text-green-500">Successfully logged in with Anon Aadhaar!</p>
             )}
+            {/* Add the VerifyYourself component */}
+            <VerifyYourself />
           </div>
+
           <p className="text-center text-lg">
             Get started by editing{" "}
             <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
